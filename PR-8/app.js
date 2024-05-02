@@ -2,16 +2,16 @@ const EventEmitter = require('events');
 const Shop = require('./shop'); 
 const Stock = require('./stock');
 
-const shop = new Shop("Sweater", "4444-1111-9012-3275");
-const stock = new Stock("Sweater"); 
+const stock = new Stock();
+const shop = new Shop(); 
 
 
-shop.on('addToCard', function(item) {
-    console.log('Item added to cart:', item);
+shop.on('addToCart', function(item) {
+    console.log(item, 'added to cart:');
 });
 
 shop.on('buy', function(creditCard) {
-    console.log('Paid with credit card:', creditCard);
+    console.log('Paid with credit card:', "****-****-****-" + creditCard.slice(-4));
     stock.emit('preparePackage', shop.item); 
 });
 
@@ -22,10 +22,13 @@ stock.on('preparePackage', function(item) {
 });
 
 stock.on('readytoDeliver', function(item) {
-    console.log('Package is on the way to you for item:', item);
+    console.log('Package is on the way to you for', item);
     console.log('Delivered!');
 });
 
 
-shop.emit('addToCard', shop.item);
-shop.emit('buy', shop.creditCard);
+shop.addToCart("Sweater");
+shop.buy("4444-1111-2978-1100");
+
+shop.addToCart("Shampoo");
+shop.buy("4444-1111-2978-5680");

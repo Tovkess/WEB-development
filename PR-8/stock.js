@@ -1,9 +1,8 @@
 const EventEmitter = require('events');
 
 class Stock extends EventEmitter {
-    constructor(item) {
+    constructor() {
         super();
-        this.item = item;
     }
 }
 

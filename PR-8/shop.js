@@ -1,10 +1,15 @@
 const EventEmitter = require('events');
 
 class Shop extends EventEmitter {
-    constructor(item, creditCard) {
+    constructor() {
         super();
-        this.item = item;
-        this.creditCard = creditCard;
+    }
+
+    addToCart(item){
+        this.emit('addToCart', item);
+    }
+    buy(creditCard){
+        this.emit('buy', creditCard);
     }
 }
 
