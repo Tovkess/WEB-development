@@ -10,18 +10,22 @@
 
     <script type="text/javascript">
 
-        function findDuplicates(arr) {
-            let duplicates = [];
-            for(let i = 0; i < arr.length; i++) {
-                for(let j = i + 1;j < arr.length; j++) {
-                    if(arr[i] === arr[j] && !duplicates.includes(arr[i])){
-                        duplicates.push(arr[i]);
-                    }
-                
-                }
+    function findDuplicates(arr) {  //here loop iterates through each element in the array 
+        //if the element is already in the seen set, it means it's a duplicate, and the prog. adds it to the duplicates set
+        let seen = new Set();
+        let duplicates = new Set();
+
+        for (let item of arr) {
+            if (seen.has(item)) {
+                duplicates.add(item);
+            } else {
+                seen.add(item);
             }
-            return duplicates;
         }
+
+        return [...duplicates];
+    }
+
 
         var initialArr = [1, 2, 3, 1, 5, 3, 4, 1];
 

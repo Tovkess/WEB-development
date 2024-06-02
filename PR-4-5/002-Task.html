@@ -10,14 +10,12 @@
 
     <script type="text/javascript">
 
-        function findUnique(arr) {
-            return arr.reduce(function (acc, el) {
-                if (!acc.includes(el)) {
-                    acc.push(el);
-                }
-                return acc;
-        }, []);
-    }
+            function findUnique(arr) {
+                return arr.reduce((acc, el) => {
+                    if (!acc.includes(el)) acc.push(el);
+                    return acc;
+                }, []);
+            }
 
         var initialArr = [1, 2, 3, 1, 5, 3, 4, 1];
 
