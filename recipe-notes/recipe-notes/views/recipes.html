@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+
+<body>
+    <h1>Recipes List</h1>
+    <ul id="recipesList"></ul>
+    <a href="/">Back to Home</a>
+    <script>
+        async function fetchRecipes() {
+            const response = await fetch('/recipes');
+            const recipes = await response.json();
+            const recipesList = document.getElementById('recipesList');
+
+            recipes.forEach(recipe => {
+                const li = document.createElement('li');
+                li.innerHTML = `Title: ${recipe.title}<br>Ingredients: ${recipe.ingredients}<br>Instructions: ${recipe.instructions}<br><img src="${recipe.photo}" alt="${recipe.title}" style="width: 100px;"><br>`;
+                recipesList.appendChild(li);
+            });
+        }
