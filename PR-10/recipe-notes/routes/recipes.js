@@ -56,6 +56,7 @@ router.put('/:id', upload.single('photo'), (req, res) => {
     res.json(recipe);
 });
 
+
 router.delete('/:id', (req, res) => {
     const index = recipes.findIndex(r => r.id === parseInt(req.params.id));
     if (index === -1) return res.status(404).send('Recipe not found');
