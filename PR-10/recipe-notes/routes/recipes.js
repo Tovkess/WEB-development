@@ -14,9 +14,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-let recipes = []; // In-memory recipes storage
+let recipes = []; 
 
-// Create a recipe
+
 router.post('/', upload.single('photo'), (req, res) => {
     const recipe = {
         id: recipes.length + 1,
@@ -29,19 +29,19 @@ router.post('/', upload.single('photo'), (req, res) => {
     res.status(201).json(recipe);
 });
 
-// Read all recipes
+
 router.get('/', (req, res) => {
     res.json(recipes);
 });
 
-// Read a single recipe by ID
+
 router.get('/:id', (req, res) => {
     const recipe = recipes.find(r => r.id === parseInt(req.params.id));
     if (!recipe) return res.status(404).send('Recipe not found');
     res.json(recipe);
 });
 
-// Update a recipe by ID
+
 router.put('/:id', upload.single('photo'), (req, res) => {
     const recipe = recipes.find(r => r.id === parseInt(req.params.id));
     if (!recipe) return res.status(404).send('Recipe not found');
@@ -56,7 +56,6 @@ router.put('/:id', upload.single('photo'), (req, res) => {
     res.json(recipe);
 });
 
-// Delete a recipe by ID
 router.delete('/:id', (req, res) => {
     const index = recipes.findIndex(r => r.id === parseInt(req.params.id));
     if (index === -1) return res.status(404).send('Recipe not found');

@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.urlencoded({extended: false}));
 
-app.use(express.json());//new layer when req is in pipeline gets to middle layer, converts data from body to json
+app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '/public')));
 
